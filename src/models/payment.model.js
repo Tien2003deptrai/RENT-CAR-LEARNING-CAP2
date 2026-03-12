@@ -20,8 +20,7 @@ const paymentSchema = new mongoose.Schema(
         stripe_payment_intent_id: { type: String, trim: true },
         transaction_code: { type: String, trim: true },
         paid_at: { type: Date },
-        paid_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        deleted_at: String
+        paid_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
     },
     { timestamps: true }
 );
