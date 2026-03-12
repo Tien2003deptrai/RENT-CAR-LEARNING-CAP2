@@ -6,10 +6,10 @@ const bookingValidation = require("../validations/booking.validation");
 const validate = require("../middlewares/validate.middleware");
 
 const router = express.Router();
+router.use(authMiddleware);
 
 router.post(
     "/create",
-    authMiddleware,
     authorizeRoles("user"),
     bookingValidation.createBooking,
     validate,
@@ -18,7 +18,6 @@ router.post(
 
 router.post(
     "/my-bookings",
-    authMiddleware,
     authorizeRoles("user"),
     bookingValidation.getMyBookings,
     validate,
@@ -27,7 +26,6 @@ router.post(
 
 router.post(
     "/showroom-bookings",
-    authMiddleware,
     authorizeRoles("showroom"),
     bookingValidation.getShowroomBookings,
     validate,
@@ -36,7 +34,6 @@ router.post(
 
 router.get(
     "/:id",
-    authMiddleware,
     bookingValidation.getBookingById,
     validate,
     bookingController.getBookingById
@@ -44,7 +41,6 @@ router.get(
 
 router.patch(
     "/:id/confirm",
-    authMiddleware,
     authorizeRoles("showroom"),
     bookingValidation.confirmBooking,
     validate,
@@ -53,7 +49,6 @@ router.patch(
 
 router.patch(
     "/:id/cancel",
-    authMiddleware,
     bookingValidation.cancelBooking,
     validate,
     bookingController.cancelBooking
@@ -61,7 +56,6 @@ router.patch(
 
 router.patch(
     "/:id/confirm-payment",
-    authMiddleware,
     authorizeRoles("showroom"),
     bookingValidation.confirmPayment,
     validate,
@@ -70,7 +64,6 @@ router.patch(
 
 router.patch(
     "/:id/handover",
-    authMiddleware,
     authorizeRoles("showroom"),
     bookingValidation.handover,
     validate,
@@ -79,7 +72,6 @@ router.patch(
 
 router.patch(
     "/:id/confirm-received",
-    authMiddleware,
     authorizeRoles("user"),
     bookingValidation.confirmReceived,
     validate,
@@ -88,7 +80,6 @@ router.patch(
 
 router.patch(
     "/:id/return",
-    authMiddleware,
     authorizeRoles("user"),
     bookingValidation.returnVehicle,
     validate,
@@ -97,7 +88,6 @@ router.patch(
 
 router.patch(
     "/:id/confirm-return",
-    authMiddleware,
     authorizeRoles("showroom"),
     bookingValidation.confirmReturn,
     validate,
